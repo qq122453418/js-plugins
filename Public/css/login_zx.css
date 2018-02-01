@@ -1,0 +1,791 @@
+   /*登录响应式样式*/
+.ie_8{
+	display: none;
+}
+.ie8_tc{
+	display: none;
+}
+ @media screen and (min-width:1500px){ /*大于等于1510*/
+/*这里是特定的样式表*/
+#acco_na{
+    color: #ea0000;
+    padding-left: 2%;
+    margin: 0px;
+    position: absolute;
+}
+.col-sm-3{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    min-width: 304px;
+    max-width: 340px;
+}
+#pass_na{
+	color: #246359;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation_p{
+	color: #fff;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation{
+	width: 50%;
+	float: left;
+	margin: 0px;
+	color: #f00;
+}
+.verif_d{
+	width: 50%;
+	float: right;
+	margin: 0px;
+	text-align: right;
+}
+.verify_a{
+	height: 45px;
+	line-height: 45px;
+}
+.signinpanel {
+    width: 410px;
+    margin: 19% 19% 0 auto;
+    float: right;
+}
+.signinpanel form{
+    background: rgba(0,0,0,0);
+    border: 0px;
+    box-shadow: 0 3px 0 rgba(255, 255, 255, 0.03);
+}
+.log_lo{
+	width: 30%;
+	float: left;
+    margin:23% auto auto 15%;
+}
+.log_lo img{
+	width: 100%;
+}
+a{
+	color: #fff;
+}
+a:hover{
+	color: #f3f3f3;
+}
+.signinpanel input {
+    background: rgba(0,0,0,0)!important;
+    border: 1px solid #fff;
+    border-radius: 13px;
+    padding: 21px 21px 21px 45px;
+}
+
+input::-webkit-input-placeholder {
+/* placeholder颜色  */
+     color: #fff !important;
+}
+ input[type=submit] {
+	color: #fff;
+	}
+.signinpanel .btn {
+	    padding: 4%;
+	    background: url("../img/anniu.jpg") 100% 100% !important;
+	    border: 1px solid #8ee2d5;
+	    border-radius: 13px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    font-family: -webkit-body;
+	    margin-top: 5px !important;
+	}
+.signinpanel .btn:hover{
+	    background: #76baaf;
+	    border: 1px solid #71b3a8;
+	    border-radius: 13px;
+	    color: #cccccc;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    font-size: 18px;
+	    font-weight: bold;
+	    font-family: -webkit-body;
+}
+.log_wz{
+	display: block;
+    width: 30px;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 10px;
+}
+.log_bk{
+	padding-left: 50px;
+}
+.log_ym{
+	display: -webkit-box;
+	margin-top: 6px;
+}
+.log_ym .log_yz{
+	padding: 20px !important;
+	width: 57%;
+}
+.log_ym .log_im{
+	width: 120px;
+	margin: 1% 0 0 6%;
+}
+.log_ym .log_im img{
+	width: 100%;
+    cursor: pointer;
+    float: left;
+}
+.veri_img{
+    width: 20px !important;
+    margin-top: 10px;
+    float: right !important;
+    margin-right: -27px;
+}
+form a{
+	display: block;
+	margin-top: 10px;
+}
+}
+@media screen and (max-width:1500px){    
+/*这里是特定的样式表*/
+body.signin{
+	padding: 10%;
+	max-width: 885px;
+	margin: 0 auto;
+}
+.signinpanel .form-control{
+	margin-top: 30px;
+	background: rgba(255, 255, 255, 0) !important;
+}
+.log_ym {
+    margin-top: 22px;
+}
+.col-sm-3{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    min-width: 304px;
+    max-width: 340px;
+}
+.verif_d{
+	margin-top: 10px;
+}
+#acco_na{
+	color: #246359;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#pass_na{
+	color: #246359;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation_p{
+	color: #fff;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation{
+	width: 50%;
+	float: left;
+	margin: 0px;
+	color: #f00;
+}
+.signinpanel {
+    width: 100% !important;
+    margin: 0;
+    padding: 0;
+}
+
+input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+     color: #fff !important;
+}
+ input[type=submit] {
+	color: #fff;
+	}
+.signinpanel form{
+    background: rgba(0,0,0,0);
+    border: 0px;
+    box-shadow: 0 3px 0 rgba(255, 255, 255, 0.03);
+}
+.log_lo{
+	margin: 15% 10% 0% 10%;
+	text-align: center;
+}
+.log_lo img{
+	width: 65%;
+}
+.signinpanel input {
+background: rgba(0,0,0,0)!important;
+    border: 1px solid #fff;
+    border-radius: 13px;
+    padding: 21px 21px 21px 45px;
+}
+.log_wz{
+	display: block;
+    width: 30px;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 10px;
+}
+.log_bk{
+	padding-left: 50px;
+}
+.log_ym{
+	display: -webkit-box;
+	margin-top: 6px;
+}
+.log_ym .log_yz{
+	/*padding: 20px !important;*/
+	width: 57%;
+}
+.log_ym .log_im{
+	width: 115px;
+	margin: 1% 0 0 6%;
+}
+.log_ym .log_im img{
+	width: 100%;
+	cursor:pointer;
+    float: left;
+}
+.veri_img{
+    width: 20px !important;
+    margin-top: 10px;
+    float: right !important;
+    margin-right: -27px;
+}
+a{
+	color: #fff;
+}
+a:hover{
+	color: #f3f3f3;
+}
+form a{
+	display: block;
+	margin-top: 10px;
+}
+
+.signinpanel .btn {
+	    background: #93e8db;
+	    border: 1px solid #8ee2d5;
+	    border-radius: 13px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    font-family: -webkit-body;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    margin-top: 5px !important;
+}
+.signinpanel .btn:hover{
+	    background: #76baaf;
+	    border: 1px solid #71b3a8;
+	    border-radius: 13px;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    color: #cccccc;
+	    font-size: 18px;
+	    font-weight: bold;
+	    font-family: -webkit-body;
+}
+  
+}
+@media screen and (max-width:768px){
+      /*不大于768px的设备尺寸中 响应式布局的特定样式  ios6*/	    
+
+#acco_na{
+	color: #246359;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+.signinpanel .form-control {
+    margin-top: 13px;
+	background: rgba(255, 255, 255, 0) !important;
+}
+#pass_na{
+	color: #246359;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation_p{
+	color: #fff;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation{
+	width: 50%;
+	float: left;
+	margin: 0px;
+	color: #f00;
+}
+.signinpanel {
+    width: 410px;
+}
+.signinpanel form{
+    background: rgba(0,0,0,0);
+    border: 0px;
+    box-shadow: 0 3px 0 rgba(255, 255, 255, 0.03);
+}
+input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+     color: #fff !important;
+}
+ input[type=submit] {
+	color: #fff;
+}
+
+.signinpanel .btn {
+	    padding: 4%;
+	    background: #93e8db;
+	    border: 1px solid #8ee2d5;
+	    border-radius: 13px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    font-family: -webkit-body;
+	    margin-top: 5px !important;
+}
+.signinpanel .btn:hover{
+	    background: #76baaf;
+	    border: 1px solid #71b3a8;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    border-radius: 13px;
+	    color: #cccccc;
+	    font-size: 18px;
+	    font-weight: bold;
+	    font-family: -webkit-body;
+}
+.log_lo{
+	margin: 30% 10% 0% 10%;
+}
+.log_lo img{
+	width: 100%;
+}
+.signinpanel input {
+background: rgba(0,0,0,0)!important;
+    border: 1px solid #fff;
+    border-radius: 13px;
+    padding: 21px 21px 21px 45px;
+}
+.log_wz{
+	display: block;
+    width: 30px;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 10px;
+}
+.log_bk{
+	padding-left: 50px;
+}
+.log_ym{
+	display: -webkit-box;
+	margin-top: 6px;
+}
+.log_ym .log_yz{
+	padding: 20px !important;
+	width: 57%;
+}
+.log_ym .log_im{
+	width: 115px;
+	margin: 1% 0 0 6%;
+}
+.log_ym .log_im img{
+	width: 100%;
+	cursor:pointer;
+    float: left;
+}
+.veri_img{
+    width: 20px !important;
+    margin-top: 10px;
+    float: right !important;
+    margin-right: -27px;
+}
+.col-sm-3{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    min-width: 304px;
+    max-width: 340px;
+}
+a{
+	color: #fff;
+}
+a:hover{
+	color: #f3f3f3;
+}
+form a{
+	display: block;
+	margin-top: 10px;
+}
+.btn-block{
+	padding: 5% 0;
+}
+}
+@media screen and (max-width:360px){	   
+
+#acco_na{
+	color: #246359;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#pass_na{
+	color: #246359;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation_p{
+	color: #fff;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation{
+	width: 50%;
+	float: left;
+	margin: 0px;
+	color: #f00;
+}
+.signinpanel {
+    width: 410px;
+}
+input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+     color: #fff !important;
+}
+ input[type=submit] {
+	color: #fff;
+	}
+.signinpanel .btn {
+	    padding: 4%;
+	    background: #93e8db;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    border: 1px solid #8ee2d5;
+	    border-radius: 13px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    font-family: -webkit-body;
+	    margin-top: 5px !important;
+}
+.signinpanel .btn:hover{
+	    background: #76baaf;
+	    border: 1px solid #71b3a8;
+	    border-radius: 13px;
+	    color: #cccccc;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    font-size: 18px;
+	    font-weight: bold;
+	    font-family: -webkit-body;
+}
+.signinpanel form{
+    background: rgba(0,0,0,0);
+    border: 0px;
+    box-shadow: 0 3px 0 rgba(255, 255, 255, 0.03);
+}
+.log_lo{
+	margin: 30% 10% 0% 10%;
+}
+.log_lo img{
+	width: 100%;
+}
+.signinpanel input {
+background: rgba(0,0,0,0)!important;
+    border: 1px solid #fff;
+    border-radius: 13px;
+    padding: 21px 21px 21px 45px;
+}
+.log_wz{
+	display: block;
+    width: 30px;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 10px;
+}
+.log_bk{
+	padding-left: 50px;
+}
+.log_ym{
+	margin-top: 6px;
+	display: -webkit-box;
+}
+.log_ym .log_yz{
+	padding: 20px !important;
+	width: 57%;
+}
+.log_ym .log_im{
+	width: 115px;
+	margin: 1% 0 0 6%;
+}
+.log_ym .log_im img{
+	width: 100%;
+	cursor:pointer;
+    float: left;
+}
+.veri_img{
+    width: 20px !important;
+    margin-top: 10px;
+    float: right !important;
+    margin-right: -27px;
+}
+a{
+	color: #fff;
+}
+a:hover{
+	color: #f3f3f3;
+}
+form a{
+
+	display: block;
+	margin-top: 10px;
+}
+  
+.col-sm-3{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    min-width: 304px;
+    max-width: 340px;
+}
+.btn-block{
+	padding: 10% 0;
+}
+    
+}
+@media screen and (max-width:320px){	   
+
+#acco_na{
+	color: #246359;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#pass_na{
+	color: #246359;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation_p{
+	color: #fff;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 5px;
+    margin-top: 1%;
+    line-height: 3;
+    padding-left: 2%;
+}
+#verifcation{
+	width: 50%;
+	float: left;
+	margin: 0px;
+	color: #f00;
+}
+.signinpanel {
+    width: 410px;
+}
+.signinpanel .btn {
+	    padding: 4%;
+	    background: #93e8db;
+	    border: 1px solid #8ee2d5;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    border-radius: 13px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    text-shadow: #000000;
+	    font-family: -webkit-body;
+	    margin-top: 5px !important;
+}
+.signinpanel .btn:hover{
+	    background: #76baaf;
+	    border: 1px solid #71b3a8;
+	    border-radius: 13px;
+	    text-shadow:0px 1px 1px #5d5d5d;
+	    color: #cccccc;
+	    font-size: 18px;
+	    text-shadow: 0 0 20px red;
+	    font-family: -webkit-body;
+}
+input::-webkit-input-placeholder {
+    /* placeholder颜色  */
+     color: #fff !important;
+}
+ input[type=submit] {
+	color: #fff;
+}
+.signinpanel form{
+    background: rgba(0,0,0,0);
+    border: 0px;
+    box-shadow: 0 3px 0 rgba(255, 255, 255, 0.03);
+}
+.log_lo{
+	margin: 30% 10% 0% 10%;
+}
+.log_lo img{
+	width: 100%;
+}
+.signinpanel input {
+background: rgba(0,0,0,0)!important;
+    border: 1px solid #fff;
+    border-radius: 13px;
+    padding: 21px 21px 21px 45px;
+}
+.log_wz{
+	display: block;
+    width: 30px;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 10px;
+}
+.log_bk{
+	padding-left: 50px;
+}
+.log_ym{
+	display: -webkit-box;
+	margin-top: 6px;
+}
+.log_ym .log_yz{
+	padding: 20px !important;
+	width: 57%;
+}
+.log_ym .log_im{
+	width: 115px;
+	margin: 1% 0 0 6%;
+}
+.log_ym .log_im img{
+	width: 100%;
+	cursor:pointer;
+    float: left;
+}
+.veri_img{
+    width: 20px !important;
+    margin-top: 10px;
+    float: right !important;
+    margin-right: -27px;
+}
+a{
+	color: #fff;
+}
+a:hover{
+	color: #f3f3f3;
+}
+form a{
+	display: block;
+	margin-top: 10px;
+}
+.btn-block{
+	padding: 10% 0;
+}
+}
+.login_in{
+	position: fixed;
+	top: 0px;
+	left:0px;
+	right: 0px;
+	bottom: 0px;
+	background: rgba(0, 0, 0, 0.5);
+}
+.form-group label{
+	color: #000  	;
+}
+.form-group input{
+	background-color: #e4e4e4;
+}
+.form-contro2{
+	width: 58%;
+	float: left;
+}
+.form-contro3{
+	width: 40%;
+	float: right;
+}
+.col-sm-3{
+	position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    min-width: 304px;
+    max-width: 340px;
+}
+.btn-zj{
+	text-align: center;
+}
+.btn-zj input{
+	width: 49%;
+    border: 0px;
+    padding: 8px;
+    background: #37c4e8;
+    border-radius: 3px;
+}
+.btn-zj .btn-qx{
+	background: #b1b1b1;
+}
+.btn-zj-xg{
+	width: 100%;
+}
+.btn-zj-xg input{
+	width: 100%;
+	text-align: center;
+	border: 0px;
+	padding: 10px;
+    background: #37c4e8;
+}
+#form_ts1{
+	color: #ed5565 !important;
+}
+#form_ts2{
+	color: #ed5565 !important;
+}
+#form_ts3{
+	color: #ed5565 !important;
+}
+#form_yzm{
+    background: #37c4e8;
+    color: #fff;
+    font-size: 0.7em;
+    padding: 0;
+}
+#new_password_p{
+	color: red;
+}
+
+#new_password_repeat_p{
+	color: red;
+}

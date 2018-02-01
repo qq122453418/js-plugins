@@ -1,0 +1,40 @@
+俱乐部配置 VIP配置 修改天数价格
+	vipLevel vip等级
+	days 天数
+	price 价格
+
+__ROOT__/index.php/Administration/Tool/VIPNumberPrice
+
+俱乐部配置 VIP配置 修改钻石权限
+	vipLevel vip等级
+	consumeRate 消耗钻石比例
+	authority权限
+
+__ROOT__/index.php/Administration/Tool/jurisdiction
+
+俱乐部配置 VIP配置 开关
+	vipLevel vip等级
+	vipSwitch 开关
+
+__ROOT__/index.php/Administration/Tool/vipswitch
+
+
+俱乐部配置 VIP配置 展示
+	
+__ROOT__/index.php/Administration/Tool/CulbConfiguration
+
+
+俱乐部配置 会员返利配置 VIP配置 展示
+	
+__ROOT__/index.php/Administration/Tool/MembersConfiguration
+
+俱乐部配置 会员返利配置 VIP配置 修改
+	guid
+	gameId	游戏id
+	VIP1CardRebateRate 售出VIP1卡返利比例
+	VIP2CardRebateRate 售出VIP2卡返利比例
+	VIP3CardRebateRate 售出VIP3卡返利比例
+	VIP4CardRebateRate 售出VIP4卡返利比例
+	DiamondClubConsumptionRebateRate俱乐部消耗钻石返利比例
+
+__ROOT__/index.php/Administration/Tool/MembersConfiguration

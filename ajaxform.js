@@ -1,6 +1,8 @@
-function AJAXForm(eleid)
+function AJAXForm(eleid,otherdata)
 {
     this.data = null;
+	
+	this.otherdata = null;
 	
 	this.type = 'get';
 	
@@ -13,6 +15,26 @@ function AJAXForm(eleid)
 	this.upload = false;//是否有上传的文件，自动判断
 	
 	this.filenum = 0; //需要处理的文件数量
+	
+	//添加参数
+	this.add_data = function(data){
+		var addtype = $.type(data);
+		var currenttype = $.type(this.data);
+		if(currenttype == 'object'){
+			this.data = $.param(this.data);
+		}
+		if(addtype == 'object'){
+			data = $.param(data);
+		}
+		
+		if(this.data){
+			if(data){
+				this.data += '&'+data;
+			}
+		}else{
+			this.data = data;
+		}
+	}
     
     this.setele = function(eleid)
     {
@@ -142,5 +164,8 @@ function AJAXForm(eleid)
     {
         this.setele(eleid);
     }
+	if(otherdata){
+		this.add_data(otherdata);
+	}
 }
 

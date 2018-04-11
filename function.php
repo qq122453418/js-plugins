@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 测试数据
  */
@@ -175,7 +176,24 @@ function data_from_url($url, $options = array(), $charset = 'utf-8', $maxnum = 5
 		CURLOPT_URL => $url,
 		CURLOPT_TIMEOUT => 30,
 		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => 'gzip',
+		//CURLOPT_ENCODING => 'gzip',
+		/**/
+		CURLOPT_HTTPHEADER => array(
+			//'Content-Type: application/x-www-form-urlencoded; charset=UTF-8',
+			//'Accept: application/json, text/javascript, */*; q=0.01',
+			// 'Accept-Encoding: gzip, deflate',
+			// 'Accept-Language: zh-CN,zh;q=0.9',
+			// 'Cache-Control: no-cache',
+			// 'Connection: keep-alive',
+			//'Content-Length: 0',
+			//'Cookie: sidebar_collapsed=false; remember_user_token=W1s0N10sIiQyYSQxMCRCNTJLYlhDN3l4OFd0OFdtTm5xUnFPIiwiMTUyMTQ0NjE2Ni4yNzc2ODI4Il0%3D--44fc2747af1e731536f0388aa5eb6a25d7f695fe',
+			///'Host: gezeal.f3322.net:10007',
+			//'Origin: http://gezeal.f3322.net:10007',
+			// 'Pragma: no-cache',
+			//'Referer: http://gezeal.f3322.net:10007/swagger/index.html',
+			// 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'
+		),
+		
 		CURLOPT_USERAGENT => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.76 Safari/537.36'
 	);
 	
@@ -203,7 +221,7 @@ function data_from_url($url, $options = array(), $charset = 'utf-8', $maxnum = 5
 	$chear_type = strrchr($content_type, '=');
 	
 	$chear_type = trim($chear_type, ' =');
-	
+	file_put_contents('post.txt', date('Y-m-d H:i:s  ') . $url . PHP_EOL . var_export(curl_getinfo($cp),true) . PHP_EOL . PHP_EOL, FILE_APPEND);
 	curl_close($cp);
 	if(!$error){
 		$fo = finfo_open(FILEINFO_MIME_TYPE);
@@ -233,6 +251,7 @@ function data_from_url($url, $options = array(), $charset = 'utf-8', $maxnum = 5
 */
 function set_url_param($url, $param=array()){
 	$p = '';
+	
 	if(is_array($param)){
 		foreach($param as $k=>$v){
 			$p .= "{$k}=".urlencode($v)."&";
@@ -265,6 +284,25 @@ function set_url_param($url, $param=array()){
 	!empty($uinfo['fragment']) && $new_url .= '#'.$uinfo['fragment'];
 	return $new_url;
 }
+
+/**
+* 将参数数组 转成 字符串格式  （url传参格式）
+* @param String or Array $param 参数
+*/
+function param_to_str($param=array()){
+	$p = '';
+	if(is_array($param)){
+		foreach($param as $k=>$v){
+			$p .= "{$k}=".urlencode($v)."&";
+		}
+		$p = trim($p, '&');
+	}else if(is_string($param)){
+		$p .= $param;
+	}
+	
+	return $p;
+}
+
 
 /**
 * get方式 获取数据
@@ -305,13 +343,27 @@ function ajax_return($status, $info='', $data=null){
 };
 
 /**
-* 发送手机验证码(现在没有短信接口，待提供短信接口后完善)
+* 发送手机验证码
 * @param $tel 电话号
-* @param $code 发送的字符串
+* @param $msg 发送的字符串
 */
-function send_phone_check($tel, $code){
-	$url = '';
+function send_phone_check($tel, $msg){
+	$uid = "105771";
+	$password = "DZ105771";
+	$srcphone = "106910135771";
+	$param = array(
+		'uid' => $uid,
+		'pwd' => md5($password),
+		'mobile' => $tel,
+		'srcphone' => $srcphone,
+		'msg' => $msg
+	);
+	$send_sms_url = "http://119.23.114.82:6666/cmppweb/sendsms";
+	
+	$url = set_url_param($send_sms_url, $param);
+	// file_put_contents('aaaaa.txt', $url);
 	$c = curl_init($url);
+	curl_setopt($c,CURLOPT_RETURNTRANSFER, true);
 	curl_exec($c);
 	if(curl_errno($c)){
 		$res = array(
@@ -335,6 +387,9 @@ function send_phone_check($tel, $code){
 * @return boolean
 */
 function check_mobile($str){
+	if(!$str){
+		return true;
+	}
 	if(preg_match("/^1[34578]{1}\d{9}$/",$str)){  
 		return true;
 	}else{  
@@ -364,8 +419,8 @@ function array_transform($arr,$field1,$field2=null){
 
 /**
 * 重新设置数组的键值(主要用于select取出的数据)
-* $arr:要处理的二维数组
-* $field:第二维数组的键值，它的值将作为第一维数组的键
+* @param $arr:要处理的二维数组
+* @param $field:第二维数组的键值，它的值将作为第一维数组的键
 */
 function array_reset_key($arr,$field){
 	$newarr=array();
@@ -375,32 +430,25 @@ function array_reset_key($arr,$field){
 	return $newarr;
 }
 
-
-/*
-* 将无限分类数据进行等级分组
-* $arr:要处理的二维数组(select去除的数据)
-* $parent_field:表示上一级别的字段，例如：表示 父id 的字段
-* return：返回包涵同等级分类的二维数组
+/**
+* 检查一个变量是否为空，0 不算空
+* @param $str:要处理的二维数组
 */
-function grade_group($arr,$parent_field){
-	$newarr=array();
-	foreach($arr as $v){
-		if($v[$parent_field]!=''&&$v[$parent_field]!=null){
-			if(!isset($newarr[$v[$parent_field]])){
-				$newarr[$v[$parent_field]]=array();
-			}
-			array_push($newarr[$v[$parent_field]],$v);
-		}
+function check_empty($str){
+	if(is_numeric($str)){
+		return false;
+	}else{
+		return empty($str);
 	}
-	return $newarr;
 }
 
 /**
 * 解析搜索参数
 * @param String $str 要解析的参数字符串
+* @param Booler $unempty 是否过滤掉空值
 * @return array 返回解析后的参数
 */
-function parse_param($str){
+function parse_param($str,$unempty = false){
 	$p = array();
 	if(!$str){
 		return $p;
@@ -417,6 +465,11 @@ function parse_param($str){
 				$p[$k] = urldecode($b[1]);
 			}else{
 				$p[$k] = null;
+			}
+			if($unempty){
+				if(check_empty($p[$k])){
+					unset($p[$k]);
+				}
 			}
 		}
 	}
@@ -470,4 +523,249 @@ function format_from_date($formation,$date = null){
 	return date($formation, $u);
 }
 
+/**
+* 将无限分类数据进行等级分组
+* @$arr:要处理的二维数组(select取出的数据)
+* @$parent_field:表示上一级别的字段，例如：表示 父id 的字段
+* @return：返回包涵同等级分类的二维数组
+*/
+function grade_group($arr,$parent_field){
+	$newarr=array();
+	foreach($arr as $v){
+		if($v[$parent_field]!=''&&$v[$parent_field]!=null){
+			if(!isset($newarr[$v[$parent_field]])){
+				$newarr[$v[$parent_field]]=array();
+			}
+			array_push($newarr[$v[$parent_field]],$v);
+		}
+	}
+	return $newarr;
+}
+
+
+/**
+* 解析上传的数据字段
+* @param String
+*/
+function pase_file(&$content){
+	$content = base64_decode(ltrim(strstr($content,','),','));
+	if(!$content){
+		return false;
+	}
+	$finfo = new finfo();
+	$mime = $finfo -> buffer($content,FILEINFO_MIME_TYPE);
+	$mime_encoding = $finfo -> buffer($content,FILEINFO_MIME_ENCODING);
+	$suffix = get_fix_form_mime($mime);
+	$info = array(
+		'content' => $content,
+		'length' => strlen($content),
+		'mime' => $mime,
+		'mime_encoding' => $mime_encoding,
+		'suffix' => $suffix
+	);
+	return $info;
+}
+
+/**
+* 根据mime类型 返回文件后缀
+*/
+function get_fix_form_mime($mime){
+	switch($mime){
+		//case 'image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png'
+		case 'image/gif':
+			return '.gif';
+			break;
+		
+		case 'image/jpeg':
+			return '.jpg';
+			break;
+			
+		case 'image/png':
+			return '.png';
+			break;
+	}
+}
+
+/**
+* 讲内容写入文件,如果文件目录不存在则自动创建，其他同 file_put_contents 函数
+*/
+function file_write($filename, $data, $flags = 0, $context = null){
+	$dir = dirname($filename);
+	if(!file_exists($dir)){
+		mkdir($dir,0777,true);
+	}
+	$res = file_put_contents($filename, $data, $flags, $context);
+	return $res;
+}
+
+/**
+* 解析请求分页参数
+*/
+function parse_page_info(){
+	$page_info = array();
+	$page = I('page', 1, 'intval');//第几页
+	$rows = I('rows', 20, 'intval');//查询条数
+	$offset = ($page - 1) * $rows;
+	
+	// $page_info['page'] = $page;
+	$page_info['rows'] = $rows;
+	$page_info['offset'] = $offset;
+	
+	return $page_info;
+}
+
+/**
+ * 将数据写入到 excel 格式文件
+ * @param Array $data 要写入的数据
+ * @param String $file 保存的文件
+ * @param Array $tableheader 表头
+ */
+function excel_insert(array $data,$file,$tableheader=array()){
+
+//    $data = [
+//        '库房'=>[
+//            ['库房编号','库房名词',1],
+//            ['库房编号','库房名词',1],
+//            ['库房编号','库房名词',1],
+//            ['库房编号','库房名词',1],
+//            ['库房编号','库房名词',1],
+//        ],
+//        '库房2'=>[
+//            ['库房编号','库房名词',1],
+//            ['库房编号','库房名词',1],
+//            ['库房编号','库房名词',1],
+//            ['库房编号','库房名词',1],
+//            ['库房编号','库房名词',1],
+//        ],
+//    ];
+//    excel_insert($data,'s.xlsx');
+
+    if(!$data||!$file){
+		
+        return false;
+    }
+	
+	include_once VENDOR_PATH . 'PHPExcel/PHPExcel.php';
+	
+    $sheet_id = 0;
+    //创建excel操作对象
+    $objPHPExcel = new PHPExcel();
+    //获得文件属性对象，给下文提供设置资源
+    $objPHPExcel->getProperties()->setCreator("")
+        ->setLastModifiedBy("")
+        ->setTitle("")
+        ->setSubject("")
+        ->setDescription("")
+        ->setKeywords("")
+        ->setCategory("");
+    for($i=1;$i<count($data);$i++){
+        $objPHPExcel->addSheet(new PHPExcel_Worksheet($objPHPExcel,'sheet'.$i));
+    }
+    foreach($data as $sheetName => $sheetData){
+        $Sheet = $objPHPExcel->setActiveSheetIndex($sheet_id);
+        $Sheet->setTitle($sheetName);
+        $insert_id = 1;
+		
+		if($tableheader && is_array($tableheader)){
+			
+			//填充表头信息
+			for($i = 0;$i < count($tableheader);$i++) {
+				$Sheet->setCellValue(chr(65+$i).$insert_id,$tableheader[$i]);
+			}
+			$insert_id++;
+		}
+		
+        foreach($sheetData as $rowData){
+            if(is_array($rowData)&&$rowData){
+				$j = 0;
+                foreach($rowData as $id => $cellData){
+                   // if(is_numeric($id)&&(is_string($cellData)||is_numeric($cellData))){
+                        //$Sheet->setCellValue(chr(65+$id).$insert_id,$cellData);
+                        $Sheet->setCellValue(chr(65+$j).$insert_id,$cellData);
+						$j++;
+                    //}else{
+						
+                    //    return false;
+						
+                   // }
+                }
+                $insert_id++;
+            }else{
+                return false;
+            }
+        }
+        $sheet_id++;
+    }
+    try{
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+        $objWriter->save($file);
+    }catch (Exception $e){
+		
+        return false;
+    }
+}
+
+/*
+	下载并删除源文件
+	$filePath:提供下载的文件
+	$fileName:下载的文件时的保存名称
+	
+*/
+function download($filePath, $fileName=''){
+	if(!$filePath || !file_exists($filePath) || is_dir($filePath)){
+		return false;
+	}
+	if(!$fileName){
+		$fileName = time().mt_rand(0,10000).strrchr($filePath);
+	}
+	  
+	$fp=fopen($filePath,"r");   
+	$file_size=filesize($filePath);   
+	//下载文件需要用到的头   
+	Header("Content-type: application/octet-stream");   
+	Header("Accept-Ranges: bytes");   
+	Header("Accept-Length:".$file_size);   
+	Header("Content-Disposition: attachment; filename=".$fileName);   
+	$buffer=1024;  //设置一次读取的字节数，每读取一次，就输出数据（即返回给浏览器）  
+	$file_count=0; //读取的总字节数  
+	//向浏览器返回数据   
+	while(!feof($fp) && $file_count<$file_size){   
+	$file_con=fread($fp,$buffer);   
+	$file_count+=$buffer;   
+	echo $file_con;   
+	}   
+	fclose($fp);  
+	  
+	//下载完成后删除压缩包，临时文件夹  
+	if($file_count >= $file_size)  
+	{
+		unlink($filePath); 
+	} 
+}
+
+/**
+* 根据数据长度，计算excel 所对应的列名
+* @param int $length 指定长度
+* @param int $offset 从第几列开始计算
+* @return 返回一个包含所有列名的数组
+*/
+/*
+function reckon_column_names($length,$offset=0){
+	$arr = array();
+	for($i=0,$b=1,$c=0; $i<$length; $i++,$b++){
+		if($b%26){
+			$b = 1;
+		}
+		
+		$arr[] = ($i+65);
+	}
+	
+	$b = ceil($length/26) - 1;
+	$last = chr(($length - ($length*26))+64);
+	
+	for($i = 1; $i <= $b; $i++){
+		$to = chr($i+64);
+	}
+}
+*/
 ?>
